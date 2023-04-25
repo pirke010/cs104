@@ -27,7 +27,7 @@ html {
     left: 50%;
     transform: translate(-50%, -20px);
     border: 1px solid rgb(142, 142, 239);
-    border-radius: 10%;
+    border-radius: 30%;
 }
 
 #ball {
