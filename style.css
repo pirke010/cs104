@@ -1,0 +1,43 @@
+#blocks{
+    display: inline-block;
+    width: 97%;
+    margin: 20px;
+}
+
+html {
+    background-color: rgb(5, 0, 62);
+}
+
+.tobreak{
+    display: inline-block;
+    width: 3%;
+    height: 20px;
+    background-color: rgb(247, 61, 61);
+    margin: 0.1%;
+    border-radius: 20%;
+}
+
+#board {
+    width: 70px;
+    height: 10px;
+    background-color: lightgrey;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -20px);
+    border: 1px solid rgb(142, 142, 239);
+    border-radius: 10%;
+}
+
+#ball {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: rgb(184, 181, 181);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -32px);
+
+}
