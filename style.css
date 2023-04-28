@@ -41,3 +41,9 @@ html {
     transform: translate(-50%, -32px);
 
 }
+
+/* disabling the horizontal scroll*/
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}

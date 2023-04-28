@@ -25,14 +25,22 @@ for (let k=0; k<248; ++k) {// Creating the blocks
 
 function board_move(event) {
     if (event.code == 'ArrowLeft') {
-        if (x_board > boardwidth/2 + 2) {
+        if (x_board > -boardwidth/2 + 2) {
             x_board = x_board - 2
+            board.style.left = `${x_board}px`
+        }
+        else {
+            x_board = window.innerWidth + boardwidth/2 + 2
             board.style.left = `${x_board}px`
         }
     }
     if (event.code == 'ArrowRight') {
-        if (x_board < window.innerWidth - boardwidth/2 - 2) {
+        if (x_board < window.innerWidth + boardwidth/2 - 2) {
             x_board = x_board + 2
+            board.style.left = `${x_board}px`
+        }
+        else{
+            x_board = -boardwidth/2 + 2
             board.style.left = `${x_board}px`
         }
     }
