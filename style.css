@@ -56,6 +56,9 @@ html, body {
     top: 40%;
     left: 40%;
     background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    text-align: center;
 }
 
 .invisible {
@@ -68,4 +71,9 @@ html, body {
     font-size: 50%;
     color: black;
     font-weight: normal;
+    align-self: center;
+}
+
+#again:hover {
+    border: 2px solid red;
 }
