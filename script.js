@@ -38,6 +38,7 @@ function simpleconfig(m, n) {
 }
 
 
+
 function board_move(event) {
     if (event.code == 'ArrowLeft') {
         if (x_board > -boardwidth/2 + 2) {
@@ -66,6 +67,7 @@ function start(event) {
         requestAnimationFrame(ball_move);
     }
 }
+
 function ball_move() {
     if (x_ball < ball.offsetWidth | x_ball > window.innerWidth - ball.offsetWidth){ //vertical wall hit
         dx = -dx ; 
@@ -78,6 +80,18 @@ function ball_move() {
             dy = -dy;
         }
     }
+    for (let k = 0; k < blocks.length; k++) {
+        if (blocks[k][1]) {
+            if (x_ball < (blocks[k][0].offsetLeft + blocks[k][0].offsetWidth/2) && x_ball > (blocks[k][0].offsetLeft - blocks[k][0].offsetWidth/2)) {
+                if (Math.abs(y_ball - blocks[k][0].offsetTop) < (ball.offsetHeight + blocks[k][0].offsetHeight)) {
+                    dy = -dy;
+                    blocks[k][1] = false;
+                    blocks[k][0].style.visibility = 'hidden';
+                }
+            }
+        }
+        
+    }
     if (y_ball > window.innerHeight - ball.offsetHeight/2) {
         stop = true;
         gameover();
@@ -89,8 +103,8 @@ function ball_move() {
     if (!stop){
         requestAnimationFrame(ball_move);
     }
-    
 }
+
  function gameover(){
     document.querySelector('#failed').classList.remove('invisible');
  }
