@@ -16,12 +16,27 @@ let dy = -1;
 document.addEventListener('keydown', board_move);
 document.addEventListener('keyup', start);
 
-for (let k=0; k<248; ++k) {// Creating the blocks
-    const block = document.createElement('div');
-    block.classList.add('tobreak');
-    blocks[k] = block;
-    container.appendChild(block);
+simpleconfig(9, 15)
+
+function simpleconfig(m, n) {
+    for (let k = 0; k < m; k++) {
+        for (let j = 0; j < n; j++) {
+            const block = document.createElement('div');
+            block.classList.add('tobreak1');
+            block.style.width = `${Math.floor(container.offsetWidth/n) - 4}px`
+            if (k % 2 == j % 2) {
+                block.style.visibility = 'hidden';
+                blocks[k] = [block, false];
+            }
+            else {
+                blocks[k] = [block, true];
+            }
+            
+            container.appendChild(block);
+        }
+    }
 }
+
 
 function board_move(event) {
     if (event.code == 'ArrowLeft') {
@@ -65,6 +80,7 @@ function ball_move() {
     }
     if (y_ball > window.innerHeight - ball.offsetHeight/2) {
         stop = true;
+        gameover();
     }
     x_ball = x_ball + dx;
     y_ball = y_ball + dy;
@@ -75,3 +91,6 @@ function ball_move() {
     }
     
 }
+ function gameover(){
+    document.querySelector('#failed').classList.remove('invisible');
+ }

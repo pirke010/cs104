@@ -1,6 +1,6 @@
 #blocks{
     display: inline-block;
-    width: 97%;
+    width: 99%;
     margin: 20px;
 }
 
@@ -8,12 +8,12 @@ html {
     background-color: rgb(5, 0, 62);
 }
 
-.tobreak{
+.tobreak1{
     display: inline-block;
     width: 3%;
     height: 20px;
     background-color: rgb(247, 61, 61);
-    margin: 0.1%;
+    margin: 2px;
     border-radius: 20%;
 }
 
@@ -46,4 +46,26 @@ html {
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+}
+
+#failed {
+    font-size: 300%;
+    color: red;
+    font-weight: bold;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    background-color: white;
+}
+
+.invisible {
+    display: none;
+} 
+
+#again {
+    display: inline-block;
+    border: 2px solid black;
+    font-size: 50%;
+    color: black;
+    font-weight: normal;
 }
