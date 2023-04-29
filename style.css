@@ -1,11 +1,11 @@
-#blocks{
+/*#blocks{
     display: inline-block;
     width: 99%;
     margin: 20px;
-}
+}*/
 
 html {
-    background-color: rgb(5, 0, 62);
+    background-color: rgb(18, 8, 126);
 }
 
 .tobreak1{
@@ -14,18 +14,18 @@ html {
     height: 20px;
     background-color: rgb(247, 61, 61);
     margin: 2px;
-    border-radius: 20%;
+    border-radius: 10%;
 }
 
 #board {
-    width: 70px;
+    width: 110px;
     height: 10px;
     background-color: lightgrey;
     display: inline-block;
     position: absolute;
-    bottom: 0;
+    /*bottom: 0;
     left: 50%;
-    transform: translate(-50%, -20px);
+    transform: translate(-50%, -20px);*/
     border: 1px solid rgb(142, 142, 239);
     border-radius: 30%;
 }
@@ -36,9 +36,9 @@ html {
     border-radius: 50%;
     background-color: rgb(184, 181, 181);
     position: absolute;
-    bottom: 0;
+    /*bottom: 0;
     left: 50%;
-    transform: translate(-50%, -31px);
+    transform: translate(-50%, -31px);*/
 
 }
 
@@ -76,4 +76,40 @@ html, body {
 
 #again:hover {
     border: 2px solid red;
+}
+
+#score {
+    display: inline-block;
+    border: 2px solid wheat;
+    color: wheat;
+    text-align: center;
+    padding: 5px;
+    margin: 2px;
+    position: absolute;
+}
+
+#win {
+    font-size: 300%;
+    color: green;
+    font-weight: bold;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+#nextlevel {
+    display: inline-block;
+    border: 2px solid black;
+    font-size: 50%;
+    color: black;
+    font-weight: normal;
+    align-self: center;
+}
+
+#nextlevel:hover {
+    border: 2px solid green;
 }
