@@ -1,32 +1,54 @@
-/*#blocks{
-    display: inline-block;
-    width: 99%;
-    margin: 20px;
-}*/
+html body {
+    height: 100%;
+    background-color: black;
+    text-align: center;
+}
 
-html {
+#container {
+    display: inline-block;
+    height: 100vh;
+    width: 700px;
     background-color: rgb(18, 8, 126);
+    background-image: url('space.jpeg');
+    border: 3px solid rgb(101, 101, 2);
+}
+
+#levels{
+    display: inline-block;
+    background-color: white;
+    width: 400px;
+    left: 35%;
+    top: 40%;
+    position: fixed;
+    padding: 20px;
+}
+
+.level {
+    display: inline-block;
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.level:hover {
+    border: 2px solid red;
+    
 }
 
 .tobreak1{
     display: inline-block;
     width: 3%;
     height: 20px;
-    background-color: rgb(247, 61, 61);
-    margin: 2px;
+    margin: 0.1%;
     border-radius: 10%;
 }
 
 #board {
     width: 110px;
     height: 10px;
-    background-color: lightgrey;
+    background-color: rgb(139, 137, 137);
     display: inline-block;
     position: absolute;
-    /*bottom: 0;
-    left: 50%;
-    transform: translate(-50%, -20px);*/
-    border: 1px solid rgb(142, 142, 239);
+    border: 2px solid rgb(99, 164, 0);
     border-radius: 30%;
 }
 
@@ -36,16 +58,14 @@ html {
     border-radius: 50%;
     background-color: rgb(184, 181, 181);
     position: absolute;
-    /*bottom: 0;
-    left: 50%;
-    transform: translate(-50%, -31px);*/
-
 }
 
-/* disabling the horizontal scroll*/
+/* disabling scroll*/
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+    max-height: 100%;
+    overflow-y: hidden;
 }
 
 #failed {
