@@ -6,17 +6,16 @@ html body {
 
 #container {
     display: inline-block;
-    height: 100vh;
+    height: 95vh;
     width: 700px;
     background-color: rgb(18, 8, 126);
     background-image: url('space.jpeg');
     border: 3px solid rgb(101, 101, 2);
+    margin: 10px;
 }
 
 #levels{
-    display: inline-block;
     background-color: white;
-    width: 400px;
     left: 35%;
     top: 40%;
     position: fixed;
@@ -26,19 +25,21 @@ html body {
 .level {
     display: inline-block;
     border: 2px solid black;
+    width: 100px;
     margin: 5px;
+    text-align: center;
 }
 
 .level:hover {
     border: 2px solid red;
     
-}
+} 
 
 .tobreak1{
     display: inline-block;
     width: 3%;
     height: 20px;
-    margin: 0.1%;
+    margin: 1px;
     border-radius: 10%;
 }
 
@@ -132,4 +133,8 @@ html, body {
 
 #nextlevel:hover {
     border: 2px solid green;
+}
+
+.hidden {
+    display: hidden;
 }
