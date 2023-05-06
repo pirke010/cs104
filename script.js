@@ -1,12 +1,8 @@
 "use strict;"
 
-const m1 = 6;
-const n1 = 12;
-const w1 = 1;
-
-let m = m1;
-let n = n1;
-let w = w1;
+let m = 6;
+let n = 13;
+let w = 1;
 let score = 0;
 
 const container = document.querySelector('#container');
@@ -21,7 +17,8 @@ const nextLevel = document.querySelector('#nextlevel');
 nextLevel.addEventListener('click', newLevel);
 
 const blocks = [];
-let colors = ['cyan', 'darkcyan', 'darkkhaki', 'darksalmon', 'darkolivegreen', 'darkorange', 'indiared', 'crimson', 'red', 'darkred'];
+let colors = ['cyan', 'darkcyan', 'darkolivegreen', 'darkkhaki', 'darksalmon', 'darkorange', 'indianred', 'crimson', 'red', 'darkred'];
+let planets = ['MERCURY', 'VENUS', 'EARTH', 'MARS', 'JUPITER', 'SATURN', 'URANUS', 'NEPTUNE'];
 
 let x_ball, y_ball, x_board, boardwidth, stop;
 
@@ -35,16 +32,18 @@ let level_ind; // level indicator
 board.style.left = `${window.innerWidth/2 - board.offsetWidth/2}px`;
 board.style.top = `${window.innerHeight - board.offsetHeight - 50}px`;
 ball.style.left = `${window.innerWidth/2 - ball.offsetWidth/2}px`;
-//ball.style.top = `${window.innerHeight - board.offsetHeight - 250 - ball.offsetHeight}px`;
 ball.style.top = `${window.innerHeight - board.offsetHeight - 50 - ball.offsetHeight}px`;
 scoreboard.style.left = '30px';
 scoreboard.style.top = `${window.innerHeight - 45}px`;
 stop = false;
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 8; i++) {
     const newl = document.createElement('div');
     newl.classList.add("level");
-    newl.textContent = `level ${i+1}`;
+    newl.textContent = `${i+1}: ${planets[i]}`;
+    newl.style.backgroundImage = `url('planet${i+1}.jpg')`;
+    newl.style.backgroundSize = '100px';
+    newl.style.cursor = 'pointer';
     newl.addEventListener('click', function() { 
         setup(i);
     } );
@@ -53,11 +52,17 @@ for (let i = 0; i < 5; i++) {
 levels.style.left = `${window.innerWidth/2 - levels.offsetWidth/2}px`;
 
 function setup(i) {
+    container.style.display = "inline-block";
+    container.style.backgroundImage = `url('planet${i+1}.jpg')`;
+    container.style.backgroundSize = `${container.offsetWidth}px`;
+    container.style.cursor = 'none';
+    board.style.display = "inline-block";
+    ball.style.display = "inline-block";
+    scoreboard.style.display = "inline-block";
     blocks.length = 0;
     board.style.left = `${window.innerWidth/2 - board.offsetWidth/2}px`;
     board.style.top = `${window.innerHeight - board.offsetHeight - 50}px`;
     ball.style.left = `${window.innerWidth/2 - ball.offsetWidth/2}px`;
-    //ball.style.top = `${window.innerHeight - board.offsetHeight - 250 - ball.offsetHeight}px`;
     ball.style.top = `${window.innerHeight - board.offsetHeight - 50 - ball.offsetHeight}px`;
     x_ball = ball.offsetLeft; // 
     y_ball = ball.offsetTop;  // x and y coordinates of the ball
@@ -73,8 +78,14 @@ function setup(i) {
     if (i < 2) {
         simpleconfig(m, n, i+1);
     }
+    else if (i < 4){
+        config1(m, n, i);
+    }
+    else if (i < 6) {
+        config2(10, 5+2*(i-4));
+    }
     else {
-        config1(m, n, i)
+        config3(8, 9, i);
     }
 }
 
@@ -82,15 +93,21 @@ function simpleconfig(m, n, w) {  //arranging blocks
     for (let k = 0; k < m; k++) {
         for (let j = 0; j < n; j++) {
             const block = document.createElement('div');
-            block.classList.add('tobreak1');
-            block.style.backgroundColor = colors[w-1];
+            block.classList.add('tobreak1');            
             block.style.width = `${(container.offsetWidth-6)/(n)-2}px`;
             if (k % 2 == j % 2) {
                 block.style.visibility = 'hidden';
                 blocks.push([block, 0, 0]);
             }
             else {
-                blocks.push([block, w, w]);
+                if ((j + k%4) % 4 < 2) {
+                    blocks.push([block, w, w]);
+                    block.style.backgroundColor = colors[w-1];
+                }
+                else {
+                    blocks.push([block, w+1, w+1]);
+                    block.style.backgroundColor = colors[w];
+                }
                 remaining += 1;
             }
             container.appendChild(block);
@@ -116,6 +133,52 @@ function config1(m, n, w) {
             else {
                 block.style.backgroundColor = colors[w-1];
                 blocks.push([block, w, w]);
+                remaining += 1;
+            }
+            container.appendChild(block);
+        }
+    }
+}
+
+function config2(n, w) {
+    for (let k = 0; k < n - 1; k++) {
+        for (let j = 0; j < n; j++) {
+            const block = document.createElement('div');
+            block.classList.add('tobreak1');
+            block.style.width = `${(container.offsetWidth-6)/(n)-2}px`;
+            if ( j >= Math.abs(k - (n-2)/2) && j < n - Math.abs(k - (n-2)/2)) {
+                block.style.backgroundColor = colors[w-Math.abs(k - (n-2)/2)];
+                blocks.push([block, w-Math.abs(k - (n-2)/2) + 1, w-Math.abs(k - (n-2)/2) + 1]);
+                remaining += 1;
+            }
+            else
+            {
+                block.style.visibility = 'hidden';
+                blocks.push([block, 0, 0]);
+            }
+            container.appendChild(block);
+        }
+    }
+}
+
+function config3(m, n, w) {
+    for (let k = 0; k < m; k++){
+        for (let j = 0; j < n; j++) {
+            const block = document.createElement('div');
+            block.classList.add('tobreak1');
+            block.style.width = `${(container.offsetWidth-6)/(n)-2}px`;
+            if (k==0 | k == m-1) {
+                block.style.backgroundColor = colors[w];
+                blocks.push([block, w+1, w+1]);
+                remaining += 1;
+            }
+            else if (j % 2 == 1) {
+                block.style.visibility = 'hidden';
+                blocks.push([block, 0, 0]);
+            }
+            else {
+                block.style.backgroundColor = colors[w - Math.abs(j - (n-1)/2)];
+                blocks.push([block, w - Math.abs(j - (n-1)/2) + 1, w - Math.abs(j - (n-1)/2) + 1]);
                 remaining += 1;
             }
             container.appendChild(block);
@@ -214,10 +277,12 @@ function ball_move() {
 function gameover(){
     score = 0;
     document.querySelector('#failed').classList.remove('invisible');
+    container.style.cursor = 'default';
 }
 
 function win() {
     document.querySelector('#win').classList.remove('invisible');
+    container.style.cursor = 'default';
 }
 
 function startAgain(event){
