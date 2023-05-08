@@ -69,7 +69,7 @@ function setup(i) {
     x_board = board.offsetLeft; // x-coordinate of the board
     boardwidth = board.offsetWidth; // width of the board
     level_ind = i;
-    levels.classList.add('invisible');
+    levels.style.display = 'none';
     container.addEventListener('mousemove', board_move);
     document.addEventListener('keyup', start);
     dx = 2;
@@ -284,32 +284,32 @@ function ball_move() {
 
 function gameover(){
     score = 0;
-    document.querySelector('#failed').classList.remove('invisible');
+    document.querySelector('#failed').style.display = 'inline-block';
     container.style.cursor = 'default';
 }
 
 function win() {
-    document.querySelector('#win').classList.remove('invisible');
+    document.querySelector('#win').style.display = 'inline-block';
     container.style.cursor = 'default';
 }
 
 function startAgain(event){
     remaining = 0;
-    for (let i = 0; i < m*n; ++i){
+    for (let i = 0; i < blocks.length; i++){
         container.removeChild(blocks[i][0]);
     }
-    document.querySelector('#failed').classList.add('invisible');
+    document.querySelector('#failed').style.display = 'none';
     scoreboard.textContent = `score: 0`;
     score = 0;
     setup(level_ind);
 }
 
 function newLevel(event){
-    for (let i = 0; i < m*n; ++i){
+    for (let i = 0; i < blocks.length; i++){
         container.removeChild(blocks[i][0]);
     }
     remaining = 0;
-    document.querySelector('#win').classList.add('invisible');
+    document.querySelector('#win').style.display = 'none';
     level_ind +=1;
     setup(level_ind);
 }
