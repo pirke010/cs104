@@ -1,0 +1,12 @@
+html body {
+    text-align: center;
+    background-image: url('space.jpeg');
+}
+div {
+    display: inline-block;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 150%;
+    width: 90vh;
+}
