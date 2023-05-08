@@ -20,7 +20,7 @@ const blocks = [];
 let colors = ['cyan', 'darkcyan', 'darkolivegreen', 'darkkhaki', 'darksalmon', 'darkorange', 'indianred', 'crimson', 'red', 'darkred'];
 let planets = ['MERCURY', 'VENUS', 'EARTH', 'MARS', 'JUPITER', 'SATURN', 'URANUS', 'NEPTUNE'];
 
-let x_ball, y_ball, x_board, boardwidth, stop;
+let x_ball, y_ball, x_board, boardwidth, stop, time;
 
 let dx = 2;
 let dy = -2;
@@ -194,12 +194,20 @@ function board_move(event) {
 function start(event) {
     if (event.code == 'Space') { //press space to start
         document.removeEventListener('keyup', start);
+        time = Date.now();
         requestAnimationFrame(playing);
     }
 }
 
 function playing() {
     ball_move();
+    let ctime = Date.now();
+    if (ctime - time > 3000) {
+        time = ctime;
+        dx = dx + Math.sign(dx) * 2/(Math.pow(v, 1.5));
+        dy = dy + Math.sign(dy) * 2/(Math.pow(v, 1.5));
+        v = Math.sqrt(dx*dx + dy*dy);
+    }
     if (stop) {
         gameover();
     }
