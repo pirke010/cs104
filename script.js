@@ -22,9 +22,12 @@ returnbutton.addEventListener('click', goback);
 const blocks = [];
 const colors = ['cyan', 'darkcyan', 'darkolivegreen', 'darkkhaki', 'darksalmon', 'darkorange', 'indianred', 'crimson', 'red', 'darkred'];
 const planets = ['MERCURY', 'VENUS', 'EARTH', 'MARS', 'JUPITER', 'SATURN', 'URANUS', 'NEPTUNE'];
-const perks = [1];
+const perks = [0,0,0,1];
 const fallingperks = [];
 let activeperks = [[0, false], [0, false]];
+
+playAgain.style.left = `${window.innerWidth/2 - playAgain.offsetWidth/2}px`;
+nextLevel.style.left = `${window.innerWidth/2 - nextLevel.offsetWidth/2}px`;
 
 let x_ball, y_ball, x_board, boardwidth, stop, time;
 
@@ -257,7 +260,7 @@ function playing() {
 }
 
 function ball_move() {
-    if (x_ball <= window.innerWidth/2 - 350 | x_ball >= window.innerWidth/2 - ball.offsetWidth + 350){ //vertical wall hit
+    if (x_ball <= window.innerWidth/2 - container.offsetWidth/2 | x_ball >= window.innerWidth/2 - ball.offsetWidth + container.offsetWidth/2){ //vertical wall hit
         dx = -dx ; 
     }
     if (y_ball <= container.offsetTop){ //ceiling hit
